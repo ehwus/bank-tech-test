@@ -2,7 +2,18 @@ const Account = require("../account");
 
 let exampleDate = new Date(2020, 0, 1);
 
+class FakeTransaction {
+  constructor(balance, type, amount, date) {
+    this.balance = balance,
+    this.type = type,
+    this.amount = amount
+  }
+}
+
 describe("Account", () => {
+  beforeEach(() => {
+
+  });
   it("Opens with a balance of 0", () => {
     let testAccount = new Account();
     expect(testAccount.balance).toEqual(0);

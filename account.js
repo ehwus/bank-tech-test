@@ -1,7 +1,8 @@
 class Account {
-  constructor() {
+  constructor(transactionClass = Object) {
     this.balance = 0;
     this.transactionHistory = [];
+    this.transactionClass = transactionClass;
   }
 
   deposit(amount) {
