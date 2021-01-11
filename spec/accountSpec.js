@@ -2,9 +2,15 @@ const Account = require('../account');
 
 describe('Account', () => {
     it('Opens with a balance of 0', () => {
-        console.log(Account)
         let testAccount = new Account;
-        console.log(testAccount)
         expect(testAccount.balance).toEqual(0);
+    });
+
+    describe('deposit()', () => {
+        it('Updates balance after a deposit', () => {
+            let testAccount = new Account;
+            testAccount.deposit(10);
+            expect(testAccount.balance).toEqual(10);
+        });
     })
 })
