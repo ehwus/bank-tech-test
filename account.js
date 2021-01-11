@@ -27,17 +27,20 @@ class Account {
     if (this.transactionHistory.length < 1) return "No transaction history";
 
     let statement = "date || credit || debit || balance";
+
     for (let transaction of this.transactionHistory) {
       statement += `\n${this.#getCurrentDate()} `;
 
       if (transaction.type === "credit") {
-        statement += `|| || ${this.#formatAmountForTransaction(
-          transaction.amount
-        )} || ${this.#formatAmountForTransaction(transaction.balance)}`;
+        statement += `|| || `;
+        statement += this.#formatAmountForTransaction(transaction.amount);
+        statement += ` || `;
+        statement += this.#formatAmountForTransaction(transaction.balance);
       } else {
-        statement += `|| ${this.#formatAmountForTransaction(
-            transaction.amount
-          )} || || ${this.#formatAmountForTransaction(transaction.balance)}`;
+        statement += `|| `;
+        statement += this.#formatAmountForTransaction(transaction.amount);
+        statement += ` || || `;
+        statement += this.#formatAmountForTransaction(transaction.balance);
       }
     }
 
