@@ -1,7 +1,7 @@
 # Bank 💵
 This is my submission in response to the bank tech test, as part of the Makers Academy bootcamp. It provides the business logic for a basic banking app, which has been built using JavaScript.
 
-I started the process by writing user stories based off of the given brief.
+I started the process by writing user stories based off of the given brief, which then influenced how I put together my class diagram to solve the problem.
 
 ## User Stories
     As a customer,
@@ -19,6 +19,9 @@ I started the process by writing user stories based off of the given brief.
     As a customer,
     So I can manage my finances,
     I'd like to see my transaction history in a statement.
+
+## Class Diagram
+![A Class Diagram for the Account Class](./images/account-class-diagram.png)
     	
 ___
 # Original Brief
