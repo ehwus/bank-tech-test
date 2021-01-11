@@ -1,6 +1,6 @@
 const Account = require("../account");
 
-let exampleDate = new Date(2020, 1, 1);
+let exampleDate = new Date(2020, 0, 1);
 
 describe("Account", () => {
   it("Opens with a balance of 0", () => {
