@@ -1,5 +1,7 @@
 const Account = require("../account");
 
+let exampleDate = new Date(2020, 1, 1);
+
 describe("Account", () => {
   it("Opens with a balance of 0", () => {
     let testAccount = new Account();
@@ -51,9 +53,25 @@ describe("Account", () => {
   });
 
   describe('getStatement()', () => {
+      beforeEach(() => {
+          jasmine.clock().mockDate(exampleDate);
+      });
+
+      afterEach(() => {
+          jasmine.clock().uninstall;
+      })
+
       it("Returns a message if there is no statement history", () => {
           let testAccount = new Account;
           expect(testAccount.getStatement()).toEqual('No transaction history');
+      });
+
+      it("Correctly returns one deposit transaction", () => {
+        let testAccount = new Account;
+        testAccount.deposit(15);
+        expect(testAccount.getStatement()).toEqual(
+            `date || credit || debit || balance\n01/01/2020 || || 15.00 || 15.00`
+        );
       })
   })
 });
