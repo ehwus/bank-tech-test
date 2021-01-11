@@ -24,6 +24,15 @@ describe("Account", () => {
         let testAccount = new Account();
         testAccount.deposit(10.111111);
         expect(testAccount.balance).toEqual(10.11)
-    })
+    });
   });
+
+  describe('withdraw()', () => {
+      it("Updates balance after a withdrawal", () => {
+        let testAccount = new Account();
+        testAccount.deposit(15);
+        testAccount.withdraw(5);
+        expect(testAccount.balance).toEqual(10);
+      });
+  })
 });

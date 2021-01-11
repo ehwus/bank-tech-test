@@ -8,6 +8,10 @@ class Account {
 
         this.balance += +amount.toFixed(2);
     }
+
+    withdraw(amount) {
+        this.balance -= amount;
+    }
 }
 
 module.exports = Account;
