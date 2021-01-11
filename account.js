@@ -7,39 +7,41 @@ class Account {
   deposit(amount) {
     if (amount < 0) throw new Error("Deposits can only be positive!");
 
-    let formattedAmount = this.#roundToTwoPlaces(amount)
+    let formattedAmount = this.#roundToTwoPlaces(amount);
     this.balance += formattedAmount;
 
-    this.transactionHistory.push(
-        {
-            balance: this.balance,
-            type: 'credit',
-            amount: formattedAmount,
-            date: this.#getCurrentDate()
-        }
-    )
+    this.#addTransaction(formattedAmount, "credit");
   }
 
   withdraw(amount) {
     if (this.balance - amount < 0)
       throw new Error("You have insufficient funds for this transaction.");
 
-    this.balance -= this.#roundToTwoPlaces(amount);
+    let formattedAmount = this.#roundToTwoPlaces(amount);
+    this.balance -= formattedAmount;
+
+    this.#addTransaction(formattedAmount, "debit");
   }
 
   getStatement() {
-      if (this.transactionHistory.length < 1) return 'No transaction history';
+    if (this.transactionHistory.length < 1) return "No transaction history";
 
-      let statement = 'date || credit || debit || balance';
-      for (let transaction of this.transactionHistory) {
-          statement += `\n${this.#getCurrentDate()} `
+    let statement = "date || credit || debit || balance";
+    for (let transaction of this.transactionHistory) {
+      statement += `\n${this.#getCurrentDate()} `;
 
-          if (transaction.type === 'credit') {
-            statement += `|| || ${this.#formatAmountForTransaction(transaction.amount)} || ${this.#formatAmountForTransaction(transaction.balance)}`
-          }
+      if (transaction.type === "credit") {
+        statement += `|| || ${this.#formatAmountForTransaction(
+          transaction.amount
+        )} || ${this.#formatAmountForTransaction(transaction.balance)}`;
+      } else {
+        statement += `|| ${this.#formatAmountForTransaction(
+            transaction.amount
+          )} || || ${this.#formatAmountForTransaction(transaction.balance)}`;
       }
+    }
 
-      return statement;
+    return statement;
   }
 
   #roundToTwoPlaces(n) {
@@ -51,20 +53,29 @@ class Account {
   }
 
   #getCurrentDate() {
-      let today = new Date();
-      let day = today.getDate();
-      let month = today.getMonth() + 1;
-      let year = today.getFullYear();
+    let today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    let year = today.getFullYear();
 
-      if (day < 10) {
-          day = '0' + day;
-      }
+    if (day < 10) {
+      day = "0" + day;
+    }
 
-      if (month < 10) {
-          month = '0' + month;
-      }
+    if (month < 10) {
+      month = "0" + month;
+    }
 
-      return day + '/' + month + '/' + year;
+    return day + "/" + month + "/" + year;
+  }
+
+  #addTransaction(amount, type) {
+    this.transactionHistory.push({
+      balance: this.balance,
+      type: type,
+      amount: amount,
+      date: this.#getCurrentDate(),
+    });
   }
 }
 

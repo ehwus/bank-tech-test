@@ -72,6 +72,15 @@ describe("Account", () => {
         expect(testAccount.getStatement()).toEqual(
             `date || credit || debit || balance\n01/01/2020 || || 15.00 || 15.00`
         );
+      });
+
+      it("Correctly returns two different transactions", () => {
+        let testAccount = new Account;
+        testAccount.deposit(15);
+        testAccount.withdraw(5);
+        let expectedStatement = `date || credit || debit || balance\n01/01/2020 || || 15.00 || 15.00`;
+        expectedStatement += `\n01/01/2020 || 5.00 || || 10.00`;
+        expect(testAccount.getStatement()).toEqual(expectedStatement);
       })
   })
 });
