@@ -1,10 +1,21 @@
 const Account = require("../account");
 
 class FakeTransaction {
-  constructor(balance, type, amount, date) {
+  static all = []
+
+  constructor(balance, type, amount) {
     this.balance = balance,
     this.type = type,
-    this.amount = amount
+    this.amount = amount,
+    this.all = []
+  }
+
+  static add(transaction) {
+    FakeTransaction.all.push(transaction)
+  }
+
+  static printHistory() {
+    return "printHistory() returned string";
   }
 };
 
@@ -55,25 +66,8 @@ describe("Account", () => {
   });
 
   describe('getStatement()', () => {
-      it("Returns a message if there is no statement history", () => {
-          expect(testAccount.getStatement()).toEqual('No transaction history');
+      it("Calls the printHistory() method on given class", () => {
+          expect(testAccount.getStatement()).toEqual('printHistory() returned string');
       });
-
-      xit("Correctly returns one deposit transaction", () => {
-        let testAccount = new Account;
-        testAccount.deposit(15);
-        expect(testAccount.getStatement()).toEqual(
-            `date || credit || debit || balance\n01/01/2020 || || 15.00 || 15.00`
-        );
-      });
-
-      xit("Correctly returns two different transactions", () => {
-        let testAccount = new Account;
-        testAccount.deposit(15);
-        testAccount.withdraw(5);
-        let expectedStatement = `date || credit || debit || balance\n01/01/2020 || || 15.00 || 15.00`;
-        expectedStatement += `\n01/01/2020 || 5.00 || || 10.00`;
-        expect(testAccount.getStatement()).toEqual(expectedStatement);
-      })
-  })
+  });
 });

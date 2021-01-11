@@ -1,7 +1,6 @@
 class Account {
   constructor(transactionClass = Object) {
     this.balance = 0;
-    this.transactionHistory = [];
     this.transactionClass = transactionClass;
   }
 
@@ -25,61 +24,15 @@ class Account {
   }
 
   getStatement() {
-    if (this.transactionHistory.length < 1) return "No transaction history";
-
-    let statement = "date || credit || debit || balance";
-
-    for (let transaction of this.transactionHistory) {
-      statement += `\n${this.#getCurrentDate()} `;
-
-      if (transaction.type === "credit") {
-        statement += `|| || `;
-        statement += this.#formatAmountForTransaction(transaction.amount);
-        statement += ` || `;
-        statement += this.#formatAmountForTransaction(transaction.balance);
-      } else {
-        statement += `|| `;
-        statement += this.#formatAmountForTransaction(transaction.amount);
-        statement += ` || || `;
-        statement += this.#formatAmountForTransaction(transaction.balance);
-      }
-    }
-
-    return statement;
+    return this.transactionClass.printHistory();
   }
 
   #roundToTwoPlaces(n) {
     return +n.toFixed(2);
   }
 
-  #formatAmountForTransaction(n) {
-    return Number.parseFloat(n).toFixed(2);
-  }
-
-  #getCurrentDate() {
-    let today = new Date();
-    let day = today.getDate();
-    let month = today.getMonth() + 1;
-    let year = today.getFullYear();
-
-    if (day < 10) {
-      day = "0" + day;
-    }
-
-    if (month < 10) {
-      month = "0" + month;
-    }
-
-    return day + "/" + month + "/" + year;
-  }
-
   #addTransaction(amount, type) {
-    this.transactionHistory.push({
-      balance: this.balance,
-      type: type,
-      amount: amount,
-      date: this.#getCurrentDate(),
-    });
+    this.transactionClass.add(new this.transactionClass(this.balance, type, amount));
   }
 }
 
