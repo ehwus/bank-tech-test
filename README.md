@@ -21,7 +21,7 @@ I started the process by writing user stories based off of the given brief, whic
     I'd like to see my transaction history in a statement.
 
 ## Class Diagram
-![A Class Diagram for the Account Class](./images/account-class-diagram.png)
+![A Class Diagram for the Account Class](/images/account-class-diagram.png)
     	
 ___
 # Original Brief
