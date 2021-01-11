@@ -19,5 +19,11 @@ describe("Account", () => {
         testAccount.deposit(-10);
       }).toThrowError("Deposits can only be positive!");
     });
+
+    it("Rounds to the nearest two decimal places", () => {
+        let testAccount = new Account();
+        testAccount.deposit(10.111111);
+        expect(testAccount.balance).toEqual(10.11)
+    })
   });
 });
