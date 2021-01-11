@@ -48,5 +48,12 @@ describe("Account", () => {
         testAccount.withdraw(1.5555555555)
         expect(testAccount.balance).toEqual(13.44)
       });
+  });
+
+  describe('getStatement()', () => {
+      it("Returns a message if there is no statement history", () => {
+          let testAccount = new Account;
+          expect(testAccount.getStatement()).toEqual('No transaction history');
+      })
   })
 });
