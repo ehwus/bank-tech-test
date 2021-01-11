@@ -30,9 +30,13 @@ class Account {
   getStatement() {
       if (this.transactionHistory.length < 1) return 'No transaction history';
 
-      let statement = 'date || credit || debit || balance\n';
+      let statement = 'date || credit || debit || balance';
       for (let transaction of this.transactionHistory) {
-          console.log(transaction);
+          statement += `\n${this.#getCurrentDate()} `
+
+          if (transaction.type === 'credit') {
+            statement += `|| || ${this.#formatAmountForTransaction(transaction.amount)} || ${this.#formatAmountForTransaction(transaction.balance)}`
+          }
       }
 
       return statement;
@@ -40,6 +44,10 @@ class Account {
 
   #roundToTwoPlaces(n) {
     return +n.toFixed(2);
+  }
+
+  #formatAmountForTransaction(n) {
+    return Number.parseFloat(n).toFixed(2);
   }
 
   #getCurrentDate() {
