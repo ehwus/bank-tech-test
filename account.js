@@ -6,13 +6,17 @@ class Account {
     deposit(amount) {
         if (amount < 0) throw new Error('Deposits can only be positive!');
 
-        this.balance += +amount.toFixed(2);
+        this.balance += this.#roundToTwoPlaces(amount);
     }
 
     withdraw(amount) {
         if (this.balance - amount < 0) throw new Error('You have insufficient funds for this transaction.')
 
-        this.balance -= amount;
+        this.balance -= this.#roundToTwoPlaces(amount);
+    }
+    
+    #roundToTwoPlaces(n) {
+        return +n.toFixed(2)
     }
 }
 

@@ -41,5 +41,12 @@ describe("Account", () => {
             testAccount.withdraw(100);
         }).toThrowError("You have insufficient funds for this transaction.")
       });
+
+      it("Rounds withdrawal to the nearest two decimal places", () => {
+        let testAccount = new Account();
+        testAccount.deposit(15);
+        testAccount.withdraw(1.5555555555)
+        expect(testAccount.balance).toEqual(13.44)
+      });
   })
 });
