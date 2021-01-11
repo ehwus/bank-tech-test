@@ -3,9 +3,9 @@ const Account = require("../account");
 class FakeTransaction {
   static all = []
 
-  constructor(balance, type, amount) {
-    this.balance = balance,
-    this.type = type,
+  constructor(newBalance, transactionType, amount) {
+    this.newBalance = newBalance,
+    this.transactionType = transactionType,
     this.amount = amount,
     this.all = []
   }
