@@ -18,6 +18,11 @@ describe("Transaction", () => {
             expect(Transaction.all[0].transactionType).toEqual('credit')
             expect(Transaction.all[0].amount).toEqual(25)
         });
+
+        it("adds the date properly to a transaction", () => {
+            Transaction.add(50, 'credit', 25);
+            expect(Transaction.all[0].date).toEqual('01/01/2020');
+        });
     });
 
     describe("printHistory()", () => {
