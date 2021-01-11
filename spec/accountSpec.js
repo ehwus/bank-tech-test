@@ -34,5 +34,12 @@ describe("Account", () => {
         testAccount.withdraw(5);
         expect(testAccount.balance).toEqual(10);
       });
+
+      it("Throws an error if withdrawal would make balance negative", () => {
+        let testAccount = new Account();
+        expect(() => {
+            testAccount.withdraw(100);
+        }).toThrowError("You have insufficient funds for this transaction.")
+      });
   })
 });

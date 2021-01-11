@@ -10,6 +10,8 @@ class Account {
     }
 
     withdraw(amount) {
+        if (this.balance - amount < 0) throw new Error('You have insufficient funds for this transaction.')
+
         this.balance -= amount;
     }
 }
