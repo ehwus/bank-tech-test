@@ -1,5 +1,7 @@
+const Transaction = require('./transaction');
+
 class Account {
-  constructor(transactionClass = Object) {
+  constructor(transactionClass = Transaction) {
     this.balance = 0;
     this.transactionClass = transactionClass;
   }
