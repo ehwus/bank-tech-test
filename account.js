@@ -7,23 +7,18 @@ class Account {
   }
 
   deposit(amount) {
-    this.#checkNumber(amount);
-    if (amount < 0) throw new Error("Deposits can only be positive!");
+    this.#errorCheckInput("deposit", amount);
 
     let formattedAmount = this.#roundToTwoPlaces(amount);
     this.balance += formattedAmount;
-
     this.#addTransaction(formattedAmount, "credit");
   }
 
   withdraw(amount) {
-    this.#checkNumber(amount);
-    if (this.balance - amount < 0)
-      throw new Error("You have insufficient funds for this transaction.");
+    this.#errorCheckInput("withdraw", amount);
 
     let formattedAmount = this.#roundToTwoPlaces(amount);
     this.balance -= formattedAmount;
-
     this.#addTransaction(formattedAmount, "debit");
   }
 
@@ -37,6 +32,16 @@ class Account {
 
   #addTransaction(amount, type) {
     this.transactionClass.add(this.balance, type, amount);
+  }
+
+  #errorCheckInput(type, amount) {
+    this.#checkNumber(amount);
+
+    if (type === "deposit" && amount < 0) {
+      throw new Error("Deposits can only be positive!");
+    } else if (type === "withdraw" && this.balance - amount < 0) {
+      throw new Error("You have insufficient funds for this transaction.");
+    }
   }
 
   #checkNumber(n) {
