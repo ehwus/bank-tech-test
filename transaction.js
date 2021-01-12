@@ -1,11 +1,4 @@
 class Transaction {
-  constructor(newBalance, transactionType, amount) {
-    this.newBalance = newBalance;
-    this.transactionType = transactionType;
-    this.amount = amount;
-    this.date = Transaction.#getCurrentDate();
-  }
-
   static all = [];
 
   static add(newBalance, transactionType, amount) {
@@ -13,7 +6,14 @@ class Transaction {
   }
 
   static printHistory() {
-    return "There are no transactions to show";
+    if (Transaction.all.length < 1) return "There are no transactions to show";
+
+    let statement = "date || credit || debit || balance";
+    for (let transaction of Transaction.all) {
+      statement += transaction.#printSelf();
+    }
+
+    return statement;
   }
 
   static #getCurrentDate() {
@@ -31,6 +31,25 @@ class Transaction {
     }
 
     return day + "/" + month + "/" + year;
+  }
+
+  constructor(newBalance, transactionType, amount) {
+    this.newBalance = newBalance;
+    this.transactionType = transactionType;
+    this.amount = amount;
+    this.date = Transaction.#getCurrentDate();
+  }
+
+  #printSelf() {
+    if (this.transactionType === "credit") {
+      return `\n${this.date} || || ${this.#formatMoney(
+        this.amount
+      )} || ${this.#formatMoney(this.newBalance)}`;
+    }
+  }
+
+  #formatMoney(n) {
+    return Number.parseFloat(n).toFixed(2);
   }
 }
 
