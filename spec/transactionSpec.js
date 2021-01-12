@@ -1,4 +1,4 @@
-const Transaction = require("../transaction");
+const Transaction = require("../src/transaction");
 
 let exampleDate = new Date(2020, 0, 1);
 
