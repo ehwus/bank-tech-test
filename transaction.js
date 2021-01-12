@@ -9,8 +9,8 @@ class Transaction {
     if (Transaction.all.length < 1) return "There are no transactions to show";
 
     let statement = "date || credit || debit || balance";
-    statement += Transaction.all.map(t => t.#printSelf());
-   
+    statement += Transaction.all.map((t) => t.#printSelf());
+
     return statement;
   }
 
@@ -39,11 +39,15 @@ class Transaction {
   }
 
   #printSelf() {
+    let returnString = `\n${this.date} || `;
+
     if (this.transactionType === "credit") {
-      return `\n${this.date} || || ${this.#formatMoney(
-        this.amount
-      )} || ${this.#formatMoney(this.newBalance)}`;
+      returnString += `${this.#formatMoney(this.amount)} || || `;
+    } else {
+      returnString += `|| ${this.#formatMoney(this.amount)} || `;
     }
+
+    return returnString + this.#formatMoney(this.newBalance)
   }
 
   #formatMoney(n) {
