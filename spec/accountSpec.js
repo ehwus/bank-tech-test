@@ -23,6 +23,7 @@ describe("Account", () => {
   beforeEach(() => {
     testAccount = new Account(FakeTransaction);
   });
+  
   it("Opens with a balance of 0", () => {
     expect(testAccount.balance).toEqual(0);
   });

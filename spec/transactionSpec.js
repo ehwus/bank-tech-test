@@ -5,6 +5,7 @@ let exampleDate = new Date(2020, 0, 1);
 describe("Transaction", () => {
     beforeEach(() => {
         jasmine.clock().mockDate(exampleDate);
+        Transaction.all = [];
     });
 
     afterEach(() => {
@@ -28,6 +29,13 @@ describe("Transaction", () => {
     describe("printHistory()", () => {
         it("Returns a message if there are no transactions", () => {
             expect(Transaction.printHistory()).toEqual('There are no transactions to show')
+        });
+
+        it("Correctly prints a history with one transaction", () => {
+            Transaction.add(15, 'credit', 15);
+            expect(Transaction.printHistory()).toEqual(
+                'date || credit || debit || balance\n01/01/2020 || || 15.00 || 15.00'
+            );
         });
     });
 });
