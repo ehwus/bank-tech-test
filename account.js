@@ -17,6 +17,7 @@ class Account {
   }
 
   withdraw(amount) {
+    this.#checkNumber(amount);
     if (this.balance - amount < 0)
       throw new Error("You have insufficient funds for this transaction.");
 

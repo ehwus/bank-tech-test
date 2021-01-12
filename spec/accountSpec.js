@@ -63,6 +63,12 @@ describe("Account", () => {
       testAccount.withdraw(1.5555555555);
       expect(testAccount.balance).toEqual(13.44);
     });
+
+    it("Throws an error if you try to withdraw NaN", () => {
+      expect(() => {
+        testAccount.withdraw("foo");
+      }).toThrowError("Not a number, try again")
+    });
   });
 
   describe("getStatement()", () => {
