@@ -39,7 +39,7 @@ class Transaction {
   }
 
   #printSelf() {
-    let returnString = `\n${this.date} || `;
+    let returnString = "\r\n" + this.date + " || ";
 
     if (this.transactionType === "credit") {
       returnString += `${this.#formatMoney(this.amount)} || || `;

@@ -34,7 +34,7 @@ describe("Integrations", () => {
     it("Successfully gives a statement of one credit transaction", () => {
         testAccount.deposit(15);
         expect(testAccount.getStatement()).toEqual(
-            "date || credit || debit || balance\n01/01/2020 || 15.00 || || 15.00"
+            "date || credit || debit || balance\r\n01/01/2020 || 15.00 || || 15.00"
         );
     });
 
