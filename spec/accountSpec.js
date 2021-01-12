@@ -1,16 +1,16 @@
 const Account = require("../account");
 
 class FakeTransaction {
-  static all = []
+  static all = [];
 
   static add(transaction) {
-    FakeTransaction.all.push(transaction)
+    FakeTransaction.all.push(transaction);
   }
 
   static printHistory() {
     return "printHistory() returned string";
   }
-};
+}
 
 describe("Account", () => {
   beforeEach(() => {
@@ -34,34 +34,36 @@ describe("Account", () => {
     });
 
     it("Rounds to the nearest two decimal places", () => {
-        testAccount.deposit(10.111111);
-        expect(testAccount.balance).toEqual(10.11)
+      testAccount.deposit(10.111111);
+      expect(testAccount.balance).toEqual(10.11);
     });
   });
 
-  describe('withdraw()', () => {
-      it("Updates balance after a withdrawal", () => {
-        testAccount.deposit(15);
-        testAccount.withdraw(5);
-        expect(testAccount.balance).toEqual(10);
-      });
+  describe("withdraw()", () => {
+    it("Updates balance after a withdrawal", () => {
+      testAccount.deposit(15);
+      testAccount.withdraw(5);
+      expect(testAccount.balance).toEqual(10);
+    });
 
-      it("Throws an error if withdrawal would make balance negative", () => {
-        expect(() => {
-            testAccount.withdraw(100);
-        }).toThrowError("You have insufficient funds for this transaction.")
-      });
+    it("Throws an error if withdrawal would make balance negative", () => {
+      expect(() => {
+        testAccount.withdraw(100);
+      }).toThrowError("You have insufficient funds for this transaction.");
+    });
 
-      it("Rounds withdrawal to the nearest two decimal places", () => {
-        testAccount.deposit(15);
-        testAccount.withdraw(1.5555555555)
-        expect(testAccount.balance).toEqual(13.44)
-      });
+    it("Rounds withdrawal to the nearest two decimal places", () => {
+      testAccount.deposit(15);
+      testAccount.withdraw(1.5555555555);
+      expect(testAccount.balance).toEqual(13.44);
+    });
   });
 
-  describe('getStatement()', () => {
-      it("Calls the printHistory() method on given class", () => {
-          expect(testAccount.getStatement()).toEqual('printHistory() returned string');
-      });
+  describe("getStatement()", () => {
+    it("Calls the printHistory() method on given class", () => {
+      expect(testAccount.getStatement()).toEqual(
+        "printHistory() returned string"
+      );
+    });
   });
 });

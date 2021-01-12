@@ -1,4 +1,4 @@
-const Transaction = require('./transaction');
+const Transaction = require("./transaction");
 
 class Account {
   constructor(transactionClass = Transaction) {
