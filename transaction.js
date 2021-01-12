@@ -9,10 +9,8 @@ class Transaction {
     if (Transaction.all.length < 1) return "There are no transactions to show";
 
     let statement = "date || credit || debit || balance";
-    for (let transaction of Transaction.all) {
-      statement += transaction.#printSelf();
-    }
-
+    statement += Transaction.all.map(t => t.#printSelf());
+   
     return statement;
   }
 
