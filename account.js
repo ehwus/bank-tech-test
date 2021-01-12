@@ -7,6 +7,7 @@ class Account {
   }
 
   deposit(amount) {
+    this.#checkNumber(amount);
     if (amount < 0) throw new Error("Deposits can only be positive!");
 
     let formattedAmount = this.#roundToTwoPlaces(amount);
@@ -35,6 +36,10 @@ class Account {
 
   #addTransaction(amount, type) {
     this.transactionClass.add(this.balance, type, amount);
+  }
+
+  #checkNumber(n) {
+    if (isNaN(n)) throw new Error("Not a number, try again");
   }
 }
 

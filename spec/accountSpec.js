@@ -37,6 +37,12 @@ describe("Account", () => {
       testAccount.deposit(10.111111);
       expect(testAccount.balance).toEqual(10.11);
     });
+
+    it("Throws an error if you try to deposit NaN", () => {
+      expect(() => {
+        testAccount.deposit("foo");
+      }).toThrowError("Not a number, try again")
+    });
   });
 
   describe("withdraw()", () => {
