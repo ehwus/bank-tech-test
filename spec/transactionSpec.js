@@ -44,7 +44,7 @@ describe("Transaction", () => {
       Transaction.add(50, "credit", 50);
       Transaction.add(35, "debit", 15);
       expect(Transaction.printHistory()).toEqual(
-        `date || credit || debit || balance\r\n01/01/2020 || 50.00 || || 50.00,\r\n01/01/2020 || || 15.00 || 35.00`
+        `date || credit || debit || balance\r\n01/01/2020 || || 15.00 || 35.00\r\n01/01/2020 || 50.00 || || 50.00`
       );
     });
   });
