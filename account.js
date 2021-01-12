@@ -23,7 +23,7 @@ class Account {
   }
 
   getStatement() {
-    return this.transactionClass.printHistory();
+    return this.transactionClass.printHistory();eslint
   }
 
   #roundToTwoPlaces(n) {
