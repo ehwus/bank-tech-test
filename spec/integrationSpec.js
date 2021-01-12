@@ -24,6 +24,13 @@ describe("Integrations", () => {
         expect(Transaction.all[0]).toEqual(expectedTransaction)
     });
 
+    it("Successfully adds a debit item to a Transaction array", () => {
+        let expectedTransaction = new Transaction(10, 'debit', 5);
+        testAccount.deposit(15);
+        testAccount.withdraw(5);
+        expect(Transaction.all[1]).toEqual(expectedTransaction);
+    });
+
     it("Successfully gives a statement of one credit transaction", () => {
         testAccount.deposit(15);
         expect(testAccount.getStatement()).toEqual(
