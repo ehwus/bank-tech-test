@@ -35,17 +35,25 @@ class Account {
   }
 
   #errorCheckInput(type, amount) {
-    this.#checkNumber(amount);
+    this.#checkIfNumber(amount);
 
-    if (type === "deposit" && amount < 0) {
-      throw new Error("Deposits can only be positive!");
-    } else if (type === "withdraw" && this.balance - amount < 0) {
-      throw new Error("You have insufficient funds for this transaction.");
+    if (type === "deposit") {
+      this.#checkNumberPositive(amount);
+    } else if (type === "withdraw") {
+      this.#checkEnoughFunds(amount);
     }
   }
 
-  #checkNumber(n) {
+  #checkIfNumber(n) {
     if (isNaN(n)) throw new Error("Not a number, try again");
+  }
+
+  #checkNumberPositive(n) {
+    if (n < 0) throw new Error("Deposits can only be positive!");
+  }
+
+  #checkEnoughFunds(n) {
+    if (this.balance - n < 0) throw new Error("You have insufficient funds for this transaction.");
   }
 }
 
