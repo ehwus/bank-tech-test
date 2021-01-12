@@ -3,13 +3,6 @@ const Account = require("../account");
 class FakeTransaction {
   static all = []
 
-  constructor(newBalance, transactionType, amount) {
-    this.newBalance = newBalance,
-    this.transactionType = transactionType,
-    this.amount = amount,
-    this.all = []
-  }
-
   static add(transaction) {
     FakeTransaction.all.push(transaction)
   }
@@ -23,7 +16,7 @@ describe("Account", () => {
   beforeEach(() => {
     testAccount = new Account(FakeTransaction);
   });
-  
+
   it("Opens with a balance of 0", () => {
     expect(testAccount.balance).toEqual(0);
   });

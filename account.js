@@ -34,7 +34,7 @@ class Account {
   }
 
   #addTransaction(amount, type) {
-    this.transactionClass.add(new this.transactionClass(this.balance, type, amount));
+    this.transactionClass.add(this.balance, type, amount);
   }
 }
 
