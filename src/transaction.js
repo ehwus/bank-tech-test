@@ -16,6 +16,7 @@ class Transaction {
       .map((t) => t.#printSelf())
       .join("");
 
+    console.log(statement);
     return statement;
   }
 
