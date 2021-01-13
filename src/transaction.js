@@ -1,3 +1,5 @@
+const TRANSACTION_TYPES = require("./transactionTypes");
+
 class Transaction {
   static all = [];
 
@@ -43,10 +45,9 @@ class Transaction {
 
   #printSelf() {
     let returnString = `\r\n` + this.date + " || ";
-
-    if (this.transactionType === "credit") {
+    if (this.transactionType === TRANSACTION_TYPES["CREDIT"]) {
       returnString += `${this.#formatMoney(this.amount)} || || `;
-    } else {
+    } else if (this.transactionType === TRANSACTION_TYPES["DEBIT"]) {
       returnString += `|| ${this.#formatMoney(this.amount)} || `;
     }
 

@@ -1,4 +1,5 @@
 const Transaction = require("./transaction");
+const TRANSACTION_TYPES = require("./transactionTypes");
 
 class Account {
   constructor(transactionClass = Transaction) {
@@ -7,19 +8,19 @@ class Account {
   }
 
   deposit(amount) {
-    this.#errorCheckInput("deposit", amount);
+    this.#errorCheckInput(TRANSACTION_TYPES["CREDIT"], amount);
 
     let formattedAmount = this.#roundToTwoPlaces(amount);
     this.balance += formattedAmount;
-    this.#addTransaction(formattedAmount, "credit");
+    this.#addTransaction(formattedAmount, TRANSACTION_TYPES["CREDIT"]);
   }
 
   withdraw(amount) {
-    this.#errorCheckInput("withdraw", amount);
+    this.#errorCheckInput(TRANSACTION_TYPES["DEBIT"], amount);
 
     let formattedAmount = this.#roundToTwoPlaces(amount);
     this.balance -= formattedAmount;
-    this.#addTransaction(formattedAmount, "debit");
+    this.#addTransaction(formattedAmount, TRANSACTION_TYPES["DEBIT"]);
   }
 
   getStatement() {
@@ -37,9 +38,9 @@ class Account {
   #errorCheckInput(type, amount) {
     this.#checkIfNumber(amount);
 
-    if (type === "deposit") {
+    if (type === TRANSACTION_TYPES["CREDIT"]) {
       this.#checkNumberPositive(amount);
-    } else if (type === "withdraw") {
+    } else if (type === TRANSACTION_TYPES["DEBIT"]) {
       this.#checkEnoughFunds(amount);
     }
   }
@@ -53,7 +54,8 @@ class Account {
   }
 
   #checkEnoughFunds(n) {
-    if (this.balance - n < 0) throw new Error("You have insufficient funds for this transaction.");
+    if (this.balance - n < 0)
+      throw new Error("You have insufficient funds for this transaction.");
   }
 }
 

@@ -41,7 +41,7 @@ describe("Account", () => {
     it("Throws an error if you try to deposit NaN", () => {
       expect(() => {
         testAccount.deposit("foo");
-      }).toThrowError("Not a number, try again")
+      }).toThrowError("Not a number, try again");
     });
   });
 
@@ -67,7 +67,7 @@ describe("Account", () => {
     it("Throws an error if you try to withdraw NaN", () => {
       expect(() => {
         testAccount.withdraw("foo");
-      }).toThrowError("Not a number, try again")
+      }).toThrowError("Not a number, try again");
     });
   });
 
