@@ -46,9 +46,12 @@ class Transaction {
 
   #printSelf() {
     let returnString = `\r\n` + this.date + " || ";
+
     if (this.transactionType === TRANSACTION_TYPES["CREDIT"]) {
       returnString += `${this.#formatMoney(this.amount)} || || `;
-    } else if (this.transactionType === TRANSACTION_TYPES["DEBIT"]) {
+    } 
+    
+    if (this.transactionType === TRANSACTION_TYPES["DEBIT"]) {
       returnString += `|| ${this.#formatMoney(this.amount)} || `;
     }
 
