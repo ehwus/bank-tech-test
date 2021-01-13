@@ -12,7 +12,7 @@ Requirements: Node.js
  2. Open 'bank-test-tech' directory in your command line.
  3. Run `$ npm install` to install the dependencies.
  5. Run `$ npm test` to run the tests.
- 6. Run `$ node -i -e "$(< account.js"` to use the classes in a REPL (see example usage below).
+ 6. Run `$ node -i -e "$(< ./src/account.js"` to use the classes in a REPL (see example usage below).
 
  ## Example Usage
  
