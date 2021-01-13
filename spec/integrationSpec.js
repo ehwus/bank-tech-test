@@ -8,6 +8,7 @@ describe("Integrations", () => {
     Transaction.all = [];
     testAccount = new Account();
     jasmine.clock().mockDate(exampleDate);
+    spyOn(console, 'log');
   });
 
   afterEach(() => {

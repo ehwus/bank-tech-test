@@ -7,6 +7,7 @@ describe("Transaction", () => {
   beforeEach(() => {
     jasmine.clock().mockDate(exampleDate);
     Transaction.all = [];
+    spyOn(console, 'log');
   });
 
   afterEach(() => {
